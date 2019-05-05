@@ -1,0 +1,13 @@
+<aside class="font-sans text-sm text-grey-dark">
+  {{ with .Params.venue }}
+    {{ with .name }}{{- . -}}&nbsp;&bull; {{ end }} {{ with .address }}{{- . -}}{{ end }}
+    {{ with .city }}&nbsp;&bull;&nbsp;{{- . -}}, {{ end }}{{ with .state }}{{- . -}}{{ end }}
+    {{ with .zip }}{{- . -}}{{ end }}
+    {{ with .link }}
+    <a href="{{ printf  . | safeHTMLAttr }}" target="_blank"
+      class="inline-block ml-2 text-primary-color-600 dim no-underline">
+      {{- replaceRE "^https?://([^/]+).*" "$1" . | safeHTMLAttr -}}
+    </a>
+    {{ end }}
+  {{ end }}
+</aside>
